@@ -1,0 +1,268 @@
+*{
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 16pt;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+}
+
+.header{
+    background-color: paleturquoise;
+    grid-area: header;
+}
+
+.img{
+    max-width: 100%;
+    display: block;
+    height: auto;
+}
+/****           GAME BOARD          ****/
+#gameboard{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-gap: 0.625rem;
+    grid-template-areas:
+        "options header header header ."
+        ". . . . . "
+        ". playarea playarea playarea ."
+        ". playarea playarea playarea ."
+        ". playerhand playerhand playerhand ."
+        ". playerhand playerhand playerhand ."
+}
+
+/****       OPTIONS PANEL       ****/
+#options{
+    grid-area: options;
+}
+
+.options-container{
+    visibility: hidden;
+    transition: visibility 2s 0s;
+}
+
+.options-container.is-visible{
+    visibility: visible;
+    transition: visibility 0s 0;
+}
+
+.options-header{
+    position: fixed;
+    background-color: rgb(135, 206, 250);
+    background-color: rgb(0, 0, 0,0.1);
+    top: 0;
+    left: 0;
+    width: 15%;
+    height: 1rem;
+    text-align: center;
+    transition: transform 0.3s 0s;
+    transform: translateY(-1rem);
+    z-index: 2;
+}
+
+.optionsBanner{
+    background-color: rgb(135, 206, 250);
+    height: 12.5rem;
+    width: 100%;
+    display: block;
+    /* background-image: url(../images/Seagull-transparent.png); */
+    background-size: cover;
+}
+
+.is-visible .options-header{
+    transition: transform 0.3s 2s;
+    transform: translateY(0);
+}
+
+.options-panel{
+    position: fixed;
+    width: 15%;
+    height: 100%;
+    transition: transform 2s 0.3s;
+    background-color: rgb(135, 206, 250);
+    background-color: rgb(135, 206, 250,0.4);
+    border-right: 1px solid #000000;
+}
+
+.options-panel{
+    bottom: 0;
+    left: 0;
+    transform: translateY(100%);
+}
+
+.is-visible .options-panel{
+    transform: translate3d(0,0,0);
+    transition-delay: 0s;
+}
+
+
+
+@keyframes closeHover{
+    0% { transform: scale(1); }
+    25% { transform: scale(1.1); }
+    50% { transform: scale(1.2); }
+    75% { transform: scale(1.3); }
+    80% { transform: scale(1.4); }
+    100% { transform: scale(1.5); }
+}
+
+.close{
+    color: #ffffff;
+    float: right;
+    padding-right: 1rem;
+    text-decoration: none;
+    transform-origin: center center;
+    animation-name: closeHover;
+    animation-duration: 0.5s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-play-state: paused;
+    animation-fill-mode: both;
+}
+
+.close:hover{
+    animation-play-state: running;
+}
+
+
+
+/****       PLAY AREA        ****/
+
+#playarea{
+    background-color: lightskyblue;
+    grid-area: playarea;
+    /*  important for the absolutely positioned
+        "played cards" */
+    position: relative;
+}
+
+.highlight{
+    border: 0.1875rem dotted #000000;
+}
+
+
+/****       PLAYER AREA       ****/
+
+#playerhand{
+    background-color: lightsalmon;
+    grid-area: playerhand;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.card{
+    background-color: white;
+    border:  0.1875rem solid #000000;
+    height: 6rem;
+    margin-left:  0.3125rem;
+    width: 4rem;
+    cursor: grab;
+    /* transition: transform 0.5s ease-in-out; */
+}
+
+.card.played{
+    position: absolute;
+    margin-left: -2rem;
+    left: 50%;
+    top: 50%;
+    margin-top: -3rem;
+    cursor: not-allowed;
+}
+
+.card.active{
+    background-color: #d3d3d3;
+    opacity: 0.4;
+}
+
+.card.over{
+    background-color: lightyellow;
+    border:  0.1875rem dotted #000000;
+}
+
+/****       CARD VALUES     ****/
+.one::before{
+    content: '1';
+}
+
+.two::before{
+    content: '2';
+}
+
+.three::before{
+    content: '3';
+}
+
+.four::before{
+    content: '4';
+}
+
+.five::before{
+    content: '5';
+}
+
+.six::before{
+    content: '6';
+}
+
+.seven::before{
+    content: '7';
+}
+
+.eight::before{
+    content: '8';
+}
+
+.nine::before{
+    content: '9';
+}
+
+.ten::before{
+    content: '10';
+}
+
+.jack::before{
+    content:'J';
+}
+
+.queen::before{
+    content: 'Q';
+}
+
+.king::before{
+    content: 'K';
+}
+
+.ace::before{
+    content: 'A';
+}
+
+
+/****       CARD SUITS     ****/
+.hearts::after{
+    content: 'Hearts';
+}
+
+.spades::after{
+    content: 'Spades';
+}
+
+.clubs::after{
+    content: 'Clubs';
+}
+
+.diamonds::after{
+    content: 'Diamonds';
+}

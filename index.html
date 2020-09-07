@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/player-style.css">
+
+    <title>Seagulls Shithead</title>
+</head>
+
+<body>
+
+    <div id="gameboard">
+        <div class="header">
+            header
+        </div>
+
+        <div id="playarea">
+            play area
+        </div>
+
+
+        <div class="options-container">
+            <div class="options-header">
+                <a href="#0" class="close">close</a>
+            </div>
+
+            <div class="options-panel">
+                <div class="content">
+                    <div class="img optionsBanner"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="options">
+            Options
+        </div>
+
+        <div id="playerhand">
+            <div draggable="true" class="card spades one" id="h1"></div>
+            <div draggable="true" class="card spades ace" id="sa"></div>
+            <div draggable="true" class="card hearts two" id="h2"></div>
+            <div draggable="true" class="card hearts three" id="h3"></div>
+        </div>
+    </div>
+
+    <script src="js/interface.js"></script>
+
+    <script src="js/gameutil.js" type="module"></script>
+
+    <script src="js/cards.js" type="module"></script>
+
+    <script src="js/gameboard.js" type="module"></script>
+
+</body>
+
+</html>
